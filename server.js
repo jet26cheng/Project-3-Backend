@@ -1,8 +1,11 @@
 
 
+
 // initialize .env variables
 
-require("dotenv").config();
+
+
+require("./config/db.connection");
 
 
 // pull PORT from .env, give default value of 4000 and establish DB Connection
@@ -15,17 +18,36 @@ const express = require("express");
 
 const app = express()
 
-const morgan = require("morgan");
+// const Messages = require("./models/messages");
+
+const chatController = require("./Controllers/chatcontroller.js")
+
+const userController = require("./Controllers/usercontroller.js")
+
+const messageContoller = require("./Controllers/messagecontroller.js")
 
 
+// Middleware 
+
+app.use(express.json())
+
+// api routes 
+
+app.use("/chat", chatController)
+app.use((err, req, res, next) => res.status(500).send(err));
+
+app.use("/user", userController)
+app.use((err, req, res, next) => res.status(500).send(err));
+
+app.use("/message", messageContoller)
+app.use((err, req, res, next) => res.status(500).send(err));
 
 
-
-
-app.get("/", (req, res) => {
-    res.status(200).send("hello World");
-});
-
+app.all("/*", function (req, res) {
+    return res.status(404).json({errata: 
+    "No Resource Found Genius!" })
+  })
+  
 
 
 

@@ -1,14 +1,20 @@
-const mongoose = require("mongoose");
+// In db.connection.js
 
-const { MONGODB_URI } = process.env;
+const mongoose = require('mongoose');
+require('dotenv').config();
 
-mongoose.set("strictQuery", true);
+// get the MongoDB URI from .env file
+const connectionStr = process.env.MONGODB_URI;
 
-mongoose.connect(MONGODB_URI);
+mongoose.set('strictQuery', true);
+mongoose.connect(connectionStr);
 
-mongoose.connection.on("open", () => console.log("You are connected to MongoDB"))
+mongoose.connection.on('connected', () => {
+  console.log(`[${new Date().toLocaleTimeString()}] - MongoDB connected ... 🙌 🙌 🙌`); 
+});
 
-mongoose.connection.on("close", () => console.log("You are disconnected to MongoDB"))
+mongoose.connection.on('error', (error) => {
+  console.log('MongoDB connection error 😥', error);
+});
 
-mongoose.connection.on("error", (err) => console.log(err))
-
+mongoose.connection.on('disconnected', () => console.log('MongoDB disconnected  ⚡️ 🔌 ⚡️'));
