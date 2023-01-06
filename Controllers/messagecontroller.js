@@ -34,7 +34,8 @@ router.use((req, res, next) => {
 
 router.get("/", async (req, res, next) => {
     try {
-        const messages = await Messages.find({}).populate("user")
+        // const messages = await Messages.find({}).populate("user")
+        const messages = await Messages.findById(req.params.id).populate("user")
         res.status(200).json(messages)
     } catch (error) {
         console.log(error)
