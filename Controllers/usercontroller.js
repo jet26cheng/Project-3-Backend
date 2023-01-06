@@ -37,8 +37,7 @@ router.get("/", async (req, res, next) => {
         const user = await User.find({})
         res.status(200).json(user)
     } catch (error) {
-        res.status(400).json(error)
-        next();
+        console.log(error)
     }
 })
 
@@ -48,8 +47,7 @@ router.get("/:id", async (req, res, next) => {
         const user = await User.findById(req.params.id).populate("chats")
         res.status(200).json(user)
     } catch (error) {
-        res.status(400).json(error)
-        next();
+        console.log(error)
     }
 })
 
@@ -66,8 +64,7 @@ router.post("/", async (req, res, next) => {
         const createdUser = await User.create(req.body)
         res.status(201).json(createdUser)
     } catch (error) {
-        res.status(400).json(error)
-        next();
+        console.log(error)
     }
 })
 
@@ -77,8 +74,7 @@ router.post("/:id", async (req, res, next) => {
         const UserWithChat = await chat.populate("chat")
         res.status(200).json(UserWithChat)
     } catch (error) {
-        res.status(400).json(error)
-        next();
+        console.log(error)
     }
 })
 
@@ -88,8 +84,7 @@ router.delete("/:id", async (req, res, next) => {
         
         res.status(202).json({message: `${deletedUser}`})
     } catch (error) {
-        res.status(400).json(error)
-        next();
+        console.log(error)
     }
 })
 

@@ -37,8 +37,7 @@ router.get("/", async (req, res, next) => {
         const messages = await Messages.find({}).populate("user")
         res.status(200).json(messages)
     } catch (error) {
-        res.status(400).json(error)
-        next();
+        console.log(error)
     }
 })
 
@@ -47,8 +46,7 @@ router.post("/", async (req, res, next) => {
         const createdMessage = await Messages.create(req.body)
         res.status(201).json(createdMessage)
     } catch (error) {
-        res.status(400).json(error)
-        next();
+        console.log(error)
     }
 })
 
@@ -58,8 +56,7 @@ router.post("/:id", async (req, res, next) => {
         
         res.status(200).json(messages)
     } catch (error) {
-        res.status(400).json(error)
-        next();
+        console.log(error)
     }
 })
 
@@ -69,8 +66,7 @@ router.delete("/:id", async (req, res, next) => {
         
         res.status(202).json({message: `${deletedMessages}`})
     } catch (error) {
-        res.status(400).json(error)
-        next();
+        console.log(error)
     }
 })
 
