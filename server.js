@@ -32,9 +32,8 @@ const messageContoller = require("./Controllers/messagecontroller.js")
 
 app.use(express.json())
 
-app.use(cors({
-    origin: '*'
-}));
+app.use(cors())
+
 
 // api routes 
 
