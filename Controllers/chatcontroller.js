@@ -53,18 +53,18 @@ router.get("/:id", async (req, res, next) => {
     }
 })
 
-router.post("/", async (req, res, next) => {
-    try {
-        const createdChat = await Chat.create(req.body)
-        res.status(201).json(createdChat)
-    } catch (error) {
+// router.post("/", async (req, res, next) => {
+//     try {
+//         const createdChat = await Chat.create(req.body)
+//         res.status(201).json(createdChat)
+//     } catch (error) {
 
-        // console.log("catch", )
+//         // console.log("catch", )
 
-        res.status(400).json(error)
-        next();
-    }
-})
+//         res.status(400).json(error)
+//         next();
+//     }
+// })
 
 router.post("/:id", async (req, res, next) => {
     try {
@@ -77,6 +77,28 @@ router.post("/:id", async (req, res, next) => {
     }
 })
 
+//Create a chat but also link it to the users
+router.post("/", async (req, res) => {
+	try {
+		console.log(req.body);
+		createdChat = await Chat.create(req.body);
+		console.log(req.body.users[0]);
+		await User.findByIdAndUpdate(req.body.users[0].userid, {
+			$push: {
+				chats: createdChat._id,
+			},
+		}),
+			await User.findByIdAndUpdate(req.body.users[1].userid, {
+				$push: {
+					chats: createdChat._id,
+				},
+			});
+		res.json(createdChat);
+	} catch (error) {
+		res.status(400).json(error);
+	}
+});
+
 router.delete("/:id", async (req, res, next) => {
     try {
         const deletedChat = await Chat.findByIdAndRemove(req.params.id)
@@ -87,6 +109,23 @@ router.delete("/:id", async (req, res, next) => {
         next();
     }
 })
+
+//add message (in chats controller)
+router.put("/:id", async (req, res) => {
+	try {
+		createdMessage = await Message.create(req.body);
+		res.json(
+			await Chat.findByIdAndUpdate(req.params.id, {
+				$push: {
+					messages: createdMessage._id,
+				},
+				lastMessage: req.body.content,
+			})
+		);
+	} catch (error) {
+		res.status(400).json(error);
+	}
+});
 
 console.log()
 module.exports = router
