@@ -34,13 +34,32 @@ router.use((req, res, next) => {
 
 router.get("/", async (req, res, next) => {
     try {
-        const user = await User.find({}).populate("chats")
+        const user = await User.find({})
         res.status(200).json(user)
     } catch (error) {
         res.status(400).json(error)
         next();
     }
 })
+
+
+router.get("/:id", async (req, res, next) => {
+    try {
+        const user = await User.findById(req.params.id)
+        res.status(200).json(user)
+    } catch (error) {
+        res.status(400).json(error)
+        next();
+    }
+})
+
+// router.get("/:id", async (req, res) => {
+// 	try {
+// 		res.json(await User.findById(req.params.id).populate("chats"));
+// 	} catch (error) {
+// 		res.status(400).json(error);
+// 	}
+// });
 
 router.post("/", async (req, res, next) => {
     try {
@@ -73,5 +92,23 @@ router.delete("/:id", async (req, res, next) => {
         next();
     }
 })
+
+// router.put("/:id", async (req, res) => {
+// 	try {
+// 		createdMessage = await Message.create(req.body);
+// 		res.json(
+// 			await Chat.findByIdAndUpdate(req.params.id, {
+// 				$push: {
+// 					messages: createdMessage._id,
+// 				},
+// 				lastMessage: req.body.content,
+// 			})
+// 		);
+// 	} catch (error) {
+// 		res.status(400).json(error);
+// 	}
+// });
+
+
 
 module.exports = router
