@@ -13,6 +13,7 @@ const { PORT, MONGODB_URI } = process.env;
 
 // importing 
 
+const cors = require("cors");
 
 const express = require("express");
 
@@ -30,6 +31,10 @@ const messageContoller = require("./Controllers/messagecontroller.js")
 // Middleware 
 
 app.use(express.json())
+
+app.use(cors({
+    origin: '*'
+}));
 
 // api routes 
 
