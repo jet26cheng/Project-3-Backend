@@ -34,7 +34,18 @@ router.use((req, res, next) => {
 
 router.get("/", async (req, res, next) => {
     try {
-        const chat = await Chat.find({}).populate("messages")
+        const chat = await Chat.find({})
+        res.status(200).json(chat)
+    } catch (error) {
+        res.status(400).json(error)
+        next();
+    }
+})
+
+
+router.get("/:id", async (req, res, next) => {
+    try {
+        const chat = await Chat.findById(req.params.id).populate("messages")
         res.status(200).json(chat)
     } catch (error) {
         res.status(400).json(error)
