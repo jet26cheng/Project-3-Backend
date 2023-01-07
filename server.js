@@ -17,14 +17,14 @@ const cors = require("cors");
 
 const express = require("express");
 
-const router = express.Router();
+// const router = express.Router();
 
-router.use(cors());
-
-
+// router.use(cors());
 
 
-// const app = express()
+
+
+const app = express()
 
 // const Messages = require("./models/messages");
 
@@ -39,7 +39,7 @@ const messageContoller = require("./Controllers/messagecontroller.js")
 
 app.use(express.json())
 
-// app.use(cors())
+app.use(cors())
 
 
 // api routes 
