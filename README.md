@@ -11,6 +11,17 @@ Once you cloned this repository and open it in your respected framework you woul
 
 you can follow along with these commands 
 
+ Markup : 
+- npm init -y 
+- npm i express
+- npm i mongodb
+- npm i mongoose
+- npm i node 
+- npm i nodemon 
+- npm i dotenv
+- npm i cors 
+- npm i morgan 
+
 npm init -y 
 npm i express
 npm i mongodb
