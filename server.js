@@ -22,7 +22,9 @@ const express = require("express");
 // router.use(cors());
 
 
+app.use(cors({origin:'https://project3-whatsapp.netlify.app/'}))
 
+app.options('*',cors())
 
 const app = express()
 
@@ -40,7 +42,8 @@ const { Router } = require("express");
 
 app.use(express.json())
 
-app.use(cors({origin:'https://project3-whatsapp.netlify.app/'}))
+
+
 
 
 
