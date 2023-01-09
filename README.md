@@ -4,22 +4,6 @@
 This project is the backend of a MERN Stack project Whatsapp clone that me and my partner has worked together on. 
 Essentially what I created was a database and website so my partner could fetch the data as a API call. 
 
-## How to use 
-
-To use this website you would need to install the following dependencies.
-Once you cloned this repository and open it in your respected framework you would need to install the dependencies we have used in this project. 
-
-you can follow along with these commands 
-
-- npm init -y 
-- npm i express
-- npm i mongodb
-- npm i mongoose
-- npm i node 
-- npm i nodemon 
-- npm i dotenv
-- npm i cors 
-- npm i morgan 
 
 ## Technologies 
 ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
@@ -48,3 +32,16 @@ Chat and Message is One Chat can have Many Messages
 
 One to Many relationship 
 
+
+## Thank you for reading! 
+Contact Us!
+<p>
+  <a href="https://www.linkedin.com/in/maripirs/" rel="nofollow noreferrer">
+    <img src="https://i.stack.imgur.com/gVE0j.png" alt="linkedin"> Maripi's LinkedIn
+  </a>
+<p>
+<p>
+  <a href="https://www.linkedin.com/in/jeddy-cheng" rel="nofollow noreferrer">
+    <img src="https://i.stack.imgur.com/gVE0j.png" alt="linkedin"> Jeddy's LinkedIn
+  </a>
+<p>
