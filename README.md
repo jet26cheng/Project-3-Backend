@@ -11,7 +11,6 @@ Once you cloned this repository and open it in your respected framework you woul
 
 you can follow along with these commands 
 
- Markup : 
 - npm init -y 
 - npm i express
 - npm i mongodb
@@ -21,17 +20,6 @@ you can follow along with these commands
 - npm i dotenv
 - npm i cors 
 - npm i morgan 
-
-npm init -y 
-npm i express
-npm i mongodb
-npm i mongoose
-npm i node 
-npm i nodemon 
-npm i dotenv
-npm i cors 
-npm i morgan 
-
 
 ## Technologies 
 ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
