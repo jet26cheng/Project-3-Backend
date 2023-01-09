@@ -110,6 +110,7 @@ router.delete("/:id", async (req, res, next) => {
 router.put("/:id", async (req, res) => {
 	try {
 		createdMessage = await Message.create(req.body);
+        
 		res.json(
 			await Chat.findByIdAndUpdate(req.params.id, {
 				$push: {
