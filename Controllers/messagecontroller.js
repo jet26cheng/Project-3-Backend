@@ -71,4 +71,22 @@ router.delete("/:id", async (req, res, next) => {
     }
 })
 
+
+router.put("/:id", async (req, res) => {
+	try {
+		createdMessage = await Message.create(req.body);
+		res.json(
+			await Chat.findByIdAndUpdate(req.params.id, {
+				$push: {
+					messages: createdMessage._id,
+				},
+				lastMessage: req.body.content,
+			})
+		);
+	} catch (error) {
+        console.log(error)
+	}
+});
+
+
 module.exports = router
