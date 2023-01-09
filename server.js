@@ -5,6 +5,7 @@
 
 
 
+
 require("./config/db.connection");
 
 require("dotenv").config();
@@ -19,6 +20,9 @@ const cors = require("cors");
 
 const express = require("express");
 
+
+const app = express()
+
 // const router = express.Router();
 
 // router.use(cors());
@@ -28,7 +32,26 @@ const express = require("express");
 
 // app.options('*',cors())
 
-const app = express()
+
+
+app.use((req, res, next) => { 
+
+	console.log('I run for all routes');    
+	next();
+
+});
+
+app.use((req, res, next) => {    
+	console.log(`${req.method} ${req.originalUrl}`);    
+	next();
+}); 
+
+
+app.use((req, res, next) => {
+    req.requestTime = new Date().toISOString() //this is method and we need to call that
+    next()
+  })
+  
 
 // const Messages = require("./models/messages");
 
@@ -47,16 +70,18 @@ app.use(express.json())
 
 app.use(cors())
 
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Methods", "DELETE, PUT, GET, POST");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content -Type, Accept");
-    next();
+// app.use(function(req, res, next) {
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header("Access-Control-Allow-Methods", "DELETE, PUT, GET, POST");
+//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content -Type, Accept");
+//     next();
 
-});
+// });
 
 
-app.options('*',cors())
+
+
+// app.options('*',cors())
 
 
 

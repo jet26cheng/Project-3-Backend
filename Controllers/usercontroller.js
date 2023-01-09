@@ -19,16 +19,16 @@ require("../config/db.connection")
 
 // });
 
-router.use((req, res, next) => {    
-	console.log(`${req.method} ${req.originalUrl}`);    
-	next();
-}); 
+// router.use((req, res, next) => {    
+// 	console.log(`${req.method} ${req.originalUrl}`);    
+// 	next();
+// }); 
 
 
-router.use((req, res, next) => {
-    req.requestTime = new Date().toISOString() //this is method and we need to call that
-    next()
-  })
+// router.use((req, res, next) => {
+//     req.requestTime = new Date().toISOString() //this is method and we need to call that
+//     next()
+//   })
   
 
 
