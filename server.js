@@ -32,14 +32,16 @@ const chatController = require("./Controllers/chatcontroller.js")
 
 const userController = require("./Controllers/usercontroller.js")
 
-const messageContoller = require("./Controllers/messagecontroller.js")
+const messageContoller = require("./Controllers/messagecontroller.js");
+const { Router } = require("express");
 
 
 // Middleware 
 
 app.use(express.json())
 
-app.use(cors())
+app.use(cors({origin:'*'}))
+
 
 
 // api routes 

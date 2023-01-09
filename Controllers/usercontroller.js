@@ -1,5 +1,5 @@
 const express = require("express");
-
+const cors = require("cors")
 const { builtinModules } = require("module");
 
 // const Chat = require("../models/Chat");
@@ -9,6 +9,8 @@ const { Messages, Chat, User } = require("../models")
 const router = express.Router();
 
 require("../config/db.connection")
+
+// app.use(cors())
 
 router.use((req, res, next) => { 
 
@@ -32,7 +34,7 @@ router.use((req, res, next) => {
 
 
 
-router.get("/", async (req, res, next) => {
+router.get("/", cors(), async (req, res, next) => {
     try {
         const user = await User.find({})
         res.status(200).json(user)
