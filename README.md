@@ -37,11 +37,14 @@ you can follow along with these commands
 I have set up the data base to have 3 objects. User, Chats, Message  
 
 User and Message is One User can have Many Messages 
+
 One to Many relationship
 
 User and Chat is Many Users can have Many Messages 
+
 Many to Many relationship
 
 Chat and Message is One Chat can have Many Messages 
+
 One to Many relationship 
 
