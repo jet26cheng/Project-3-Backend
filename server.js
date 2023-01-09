@@ -40,7 +40,7 @@ const { Router } = require("express");
 
 app.use(express.json())
 
-app.use(cors({origin:'*'}))
+app.use(cors({origin:'https://project3-whatsapp.netlify.app/'}))
 
 
 
