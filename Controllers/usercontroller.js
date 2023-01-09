@@ -12,12 +12,12 @@ require("../config/db.connection")
 
 // app.use(cors())
 
-router.use((req, res, next) => { 
+// router.use((req, res, next) => { 
 
-	console.log('I run for all routes');    
-	next();
+// 	console.log('I run for all routes');    
+// 	next();
 
-});
+// });
 
 router.use((req, res, next) => {    
 	console.log(`${req.method} ${req.originalUrl}`);    
