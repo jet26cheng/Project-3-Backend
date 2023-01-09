@@ -1,11 +1,4 @@
 
-
-
-// initialize .env variables
-
-
-
-
 require("./config/db.connection");
 
 require("dotenv").config();
@@ -16,29 +9,17 @@ const { PORT, MONGODB_URI } = process.env;
 
 // importing 
 
+
 const cors = require("cors");
 
 const express = require("express");
 
-
 const app = express()
-
-// const router = express.Router();
-
-// router.use(cors());
-
-
-// app.use(cors())
-
-// app.options('*',cors())
-
-
 
 app.use((req, res, next) => { 
 
 	console.log('I run for all routes');    
 	next();
-
 });
 
 app.use((req, res, next) => {    
@@ -46,46 +27,22 @@ app.use((req, res, next) => {
 	next();
 }); 
 
-
 app.use((req, res, next) => {
     req.requestTime = new Date().toISOString() //this is method and we need to call that
     next()
   })
   
+  app.use(express.json())
 
-// const Messages = require("./models/messages");
+  app.use(cors())
+  
+  app.use(morgan("dev"));
 
 const chatController = require("./Controllers/chatcontroller.js")
 
 const userController = require("./Controllers/usercontroller.js")
 
 const messageContoller = require("./Controllers/messagecontroller.js");
-const { Router } = require("express");
-
-
-// Middleware 
-
-app.use(express.json())
-
-
-app.use(cors())
-
-// app.use(function(req, res, next) {
-//     res.header("Access-Control-Allow-Origin", "*");
-//     res.header("Access-Control-Allow-Methods", "DELETE, PUT, GET, POST");
-//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content -Type, Accept");
-//     next();
-
-// });
-
-
-
-
-// app.options('*',cors())
-
-
-
-
 
 // api routes 
 
