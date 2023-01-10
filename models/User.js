@@ -17,11 +17,11 @@ const userSchema = new mongoose.Schema({
     }],
     image: {
         type: String,
-        default:"https://www.google.com/url?sa=i&url=https%3A%2F%2Fstock.adobe.com%2Fsearch%2Fimages%3Fk%3Ddefault%2Bprofile%2Bpicture&psig=AOvVaw2UQ3TWF5b0gwPmeQzg3B_a&ust=1673371938114000&source=images&cd=vfe&ved=0CA4QjRxqFwoTCKjj-rCCu_wCFQAAAAAdAAAAABAE"
+        default:"https://as2.ftcdn.net/v2/jpg/02/15/84/43/1000_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg"
     },
     displayname: {
         type: String,
-        default: null
+        default: ""
     }
 },
     {
