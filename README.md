@@ -4,6 +4,7 @@
 
 ###### [Whatsapp Clone](https://project3-whatsapp.netlify.app/)
 use this URL to access the backend database! 
+
 To look at each object within the database you would want to use each respected link below
 
 https://obscure-dawn-52977.herokuapp.com/
@@ -18,6 +19,7 @@ https://obscure-dawn-52977.herokuapp.com/message
 
 ## Description 
 This project is the backend of a MERN Stack project Whatsapp clone that me and my partner has worked together on. 
+
 Essentially what I created was a database and website so my partner could fetch the data as a API call. 
 
 
