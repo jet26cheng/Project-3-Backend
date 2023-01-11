@@ -14,6 +14,7 @@ const express = require("express");
 
 const app = express();
 
+// MIDDLEWARE
 app.use(express.json());
 
 app.use(cors());
@@ -31,24 +32,11 @@ app.use((req, res, next) => {
 });
 
 app.use((req, res, next) => {
-  req.requestTime = new Date().toISOString(); //this is method and we need to call that
+  req.requestTime = new Date().toISOString(); 
   next();
 });
 
-// app.use((req, res, next) => {
-// 	res.setHeader("Access-Control-Allow-Origin", "*");
-// 	res.setHeader("Access-Control-Allow-Credentials", "true");
-// 	res.setHeader(
-// 		"Access-Control-Allow-Methods",
-// 		"GET,HEAD,OPTIONS,POST,PUT,DELETE"
-// 	);
-// 	res.setHeader(
-// 		"Access-Control-Allow-Headers",
-// 		"Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, Authorization, access-control-allow-origin"
-// 	);
-// 	next();
-// });
-
+// controllers 
 const chatController = require("./Controllers/chatcontroller.js");
 
 const userController = require("./Controllers/usercontroller.js");

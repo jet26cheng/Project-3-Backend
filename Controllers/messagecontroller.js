@@ -2,39 +2,16 @@ const express = require("express");
 
 const { builtinModules } = require("module");
 
-// const Chat = require("../models/Chat");
-
 const { Messages, Chat, User } = require("../models")
 
 const router = express.Router();
 
 require("../config/db.connection")
 
-// router.use((req, res, next) => { 
-
-// 	console.log('I run for all routes');    
-// 	next();
-
-// });
-
-// router.use((req, res, next) => {    
-// 	console.log(`${req.method} ${req.originalUrl}`);    
-// 	next();
-// }); 
-
-
-// router.use((req, res, next) => {
-//     req.requestTime = new Date().toISOString() //this is method and we need to call that
-//     next()
-//   })
-  
-
-
-
-
+// https://project3-whatsapp.netlify.app/message 
+// the ROUTE to GET all the message objects from the database
 router.get("/", async (req, res, next) => {
     try {
-        // const messages = await Messages.find({}).populate("user")
         const messages = await Messages.findById(req.params.id).populate("user")
         res.status(200).json(messages)
     } catch (error) {
@@ -42,6 +19,8 @@ router.get("/", async (req, res, next) => {
     }
 })
 
+// https://project3-whatsapp.netlify.app/message 
+// the ROUTE to POST all the message objects to the database
 router.post("/", async (req, res, next) => {
     try {
         const createdMessage = await Messages.create(req.body)
@@ -51,6 +30,8 @@ router.post("/", async (req, res, next) => {
     }
 })
 
+// https://project3-whatsapp.netlify.app/message/:id 
+// the ROUTE to POST a message object to the database with a specific message:id
 router.post("/:id", async (req, res, next) => {
     try {
         const messages = await Messages.findById(req.params.id)
@@ -61,6 +42,8 @@ router.post("/:id", async (req, res, next) => {
     }
 })
 
+// https://project3-whatsapp.netlify.app/message/:id 
+// the ROUTE to DELETE a message object from the database with a specific message:id
 router.delete("/:id", async (req, res, next) => {
     try {
         const deletedMessages = await Messages.findByIdAndRemove(req.params.id)
@@ -70,23 +53,5 @@ router.delete("/:id", async (req, res, next) => {
         console.log(error)
     }
 })
-
-
-// router.put("/:id", async (req, res) => {
-// 	try {
-// 		createdMessage = await Message.create(req.body);
-// 		res.json(
-// 			await Chat.findByIdAndUpdate(req.params.id, {
-// 				$push: {
-// 					messages: createdMessage._id,
-// 				},
-// 				lastMessage: req.body.content,
-// 			})
-// 		);
-// 	} catch (error) {
-//         console.log(error)
-// 	}
-// });
-
 
 module.exports = router

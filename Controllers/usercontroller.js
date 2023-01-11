@@ -1,8 +1,6 @@
 const express = require("express");
 const { builtinModules } = require("module");
 
-// const Chat = require("../models/Chat");
-
 const { Messages, Chat, User } = require("../models")
 
 const router = express.Router();
@@ -10,7 +8,8 @@ const router = express.Router();
 require("../config/db.connection")
 
 
-
+// https://project3-whatsapp.netlify.app/user
+// the ROUTE to GET all user objects from the database
 router.get("/", async (req, res, next) => {
     try {
         const user = await User.find({})
@@ -20,7 +19,8 @@ router.get("/", async (req, res, next) => {
     }
 })
 
-
+// https://project3-whatsapp.netlify.app/user/:id
+// the ROUTE to GET a user objects from the database with a specific user/:id
 router.get("/:id", async (req, res, next) => {
     try {
         const user = await User.findById(req.params.id).populate("chats")
@@ -30,14 +30,8 @@ router.get("/:id", async (req, res, next) => {
     }
 })
 
-// router.get("/:id", async (req, res) => {
-// 	try {
-// 		res.json(await User.findById(req.params.id).populate("chats"));
-// 	} catch (error) {
-// 		res.status(400).json(error);
-// 	}
-// });
-
+// https://project3-whatsapp.netlify.app/user/
+// the ROUTE to POST all user objects to the database
 router.post("/", async (req, res, next) => {
     try {
         const createdUser = await User.create(req.body)
@@ -47,6 +41,9 @@ router.post("/", async (req, res, next) => {
     }
 })
 
+
+// https://project3-whatsapp.netlify.app/user/:id
+// the ROUTE to make a user object to the database by specific user/:id
 router.post("/:id", async (req, res, next) => {
     try {
         const user = await User.findById(req.params.id)
@@ -57,6 +54,8 @@ router.post("/:id", async (req, res, next) => {
     }
 })
 
+// https://project3-whatsapp.netlify.app/user/:id
+// the ROUTE to DELETE a user object to the database by specific user/:id
 router.delete("/:id", async (req, res, next) => {
     try {
         const deletedUser = await User.findByIdAndRemove(req.params.id)
@@ -67,6 +66,8 @@ router.delete("/:id", async (req, res, next) => {
     }
 })
 
+// https://project3-whatsapp.netlify.app/user/:id
+// the ROUTE to update a user object to the database by specific user/:id with the following objects in the user like the chat object and the message objects 
 router.put("/:id", async (req, res) => {
 	try {
         const updatedUser = await User.findByIdAndUpdate(req.params.id, 

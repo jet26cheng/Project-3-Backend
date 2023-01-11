@@ -2,36 +2,14 @@ const express = require("express");
 
 const { builtinModules } = require("module");
 
-// const Chat = require("../models/Chat");
-
 const {Chat, User, Messages } = require("../models")
 
 const router = express.Router();
 
 require("../config/db.connection")
 
-// router.use((req, res, next) => { 
-
-// 	console.log('I run for all routes');    
-// 	next();
-
-// });
-
-// router.use((req, res, next) => {    
-// 	console.log(`${req.method} ${req.originalUrl}`);    
-// 	next();
-// }); 
-
-
-// router.use((req, res, next) => {
-//     req.requestTime = new Date().toISOString() //this is method and we need to call that
-//     next()
-//   })
-  
-
-
-
-
+// https://project3-whatsapp.netlify.app/chat/
+// the ROUTE to GET all the chat objects from the database
 router.get("/", async (req, res, next) => {
     try {
         const chat = await Chat.find({})
@@ -41,7 +19,8 @@ router.get("/", async (req, res, next) => {
     }
 })
 
-
+// https://project3-whatsapp.netlify.app/chat/:id
+// the ROUTE to GET a specific chat object from the database by the chat: id 
 router.get("/:id", async (req, res, next) => {
     try {
         const chat = await Chat.findById(req.params.id).populate("messages")
@@ -50,20 +29,8 @@ router.get("/:id", async (req, res, next) => {
         console.log(error)
     }
 })
-
-// router.post("/", async (req, res, next) => {
-//     try {
-//         const createdChat = await Chat.create(req.body)
-//         res.status(201).json(createdChat)
-//     } catch (error) {
-
-//         // console.log("catch", )
-
-//         res.status(400).json(error)
-//         next();
-//     }
-// })
-
+// https://project3-whatsapp.netlify.app/chat/:id
+// the ROUTE to make a chat object in the database by that specific chat: id and adding the message object that the user has typed into the chat 
 router.post("/:id", async (req, res, next) => {
     try {
         const chat = await Chat.findById(req.params.id)
@@ -74,7 +41,8 @@ router.post("/:id", async (req, res, next) => {
     }
 })
 
-//Create a chat but also link it to the users
+// https://project3-whatsapp.netlify.app/chat/
+// the ROUTE to make a chat object in the database and updating both user objects which are referencing that specific chat that just been created 
 router.post("/", async (req, res) => {
 	try {
 		console.log(req.body);
@@ -96,6 +64,9 @@ router.post("/", async (req, res) => {
 	}
 });
 
+
+// https://project3-whatsapp.netlify.app/chat/:id 
+// the ROUTE to delete a chat object in the database by that chat:id 
 router.delete("/:id", async (req, res, next) => {
 	try {
 		const deletedChat = await Chat.findByIdAndRemove(req.params.id);
@@ -111,7 +82,8 @@ router.delete("/:id", async (req, res, next) => {
 	}
 })
 
-// //add message (in chats controller)
+// https://project3-whatsapp.netlify.app/chat/:id 
+// the ROUTE to update an existing chat object in the database with every specific message object being typed by the user. 
 router.put("/:id", async (req, res) => {
 	try {
 		createdMessage = await Messages.create(req.body);
@@ -129,5 +101,4 @@ router.put("/:id", async (req, res) => {
 	}
 });
 
-console.log()
 module.exports = router
