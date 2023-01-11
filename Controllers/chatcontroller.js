@@ -98,12 +98,17 @@ router.post("/", async (req, res) => {
 
 router.delete("/:id", async (req, res, next) => {
     try {
-        const deletedChat = await Chat.findByIdAndRemove(req.params.id)
-        
-        res.status(202).json({message: `${deletedChat}`})
+	    await Chat.findByIdAndRemove(req.params.id);
+		console.log(req.body);
+		await User.findByIdAndUpdate(req.body[0], {
+			$pull: { chats: { $in: [req.params.id] } },
+		});
+		await User.findByIdAndUpdate(req.body[1], {
+			$pull: { chats: { $in: [req.params.id] } },
+		});
     } catch (error) {
         console.log(error)
-    }
+	}
 })
 
 // //add message (in chats controller)
