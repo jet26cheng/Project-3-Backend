@@ -3,6 +3,16 @@
 ##### By Maripi Bartosch and Jeddy Cheng
 
 ###### [Whatsapp Clone](https://project3-whatsapp.netlify.app/)
+use this URL to access the backend database! and to look at each object within the database you would want to use each respected link below
+
+https://obscure-dawn-52977.herokuapp.com/
+
+https://obscure-dawn-52977.herokuapp.com/user
+
+https://obscure-dawn-52977.herokuapp.com/chat
+
+https://obscure-dawn-52977.herokuapp.com/message
+
 
 
 ## Description 
