@@ -97,16 +97,16 @@ router.post("/", async (req, res) => {
 });
 
 router.delete("/:id", async (req, res, next) => {
-    try {
-	    await Chat.findByIdAndRemove(req.params.id);
-		console.log(req.body);
+	try {
+		const deletedChat = await Chat.findByIdAndRemove(req.params.id);
 		await User.findByIdAndUpdate(req.body[0], {
 			$pull: { chats: { $in: [req.params.id] } },
 		});
 		await User.findByIdAndUpdate(req.body[1], {
 			$pull: { chats: { $in: [req.params.id] } },
 		});
-    } catch (error) {
+		res.json(deletedChat);}
+		catch (error) {
         console.log(error)
 	}
 })
